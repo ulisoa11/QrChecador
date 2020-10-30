@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +26,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
+                // Write a message to the database
+
+                // Write a message to the database
+                val database = FirebaseDatabase.getInstance()
+                val myRef = database.getReference("Usuarios")
+
+                myRef.setValue("Hello, World!")
                 openScan()
             }
         } else {
